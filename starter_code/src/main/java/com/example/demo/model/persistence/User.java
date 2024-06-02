@@ -1,21 +1,14 @@
 package com.example.demo.model.persistence;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
+import com.example.demo.constant.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -26,6 +19,14 @@ public class User {
 	@Column(nullable = false, unique = true)
 	@JsonProperty
 	private String username;
+
+	@Column(nullable = false, unique = true)
+	@JsonProperty
+	private String password;
+
+	@Column
+	@JsonProperty
+	private RoleEnum roleEnum;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
@@ -55,7 +56,20 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public RoleEnum getRoleEnum() {
+		return roleEnum;
+	}
+
+	public void setRoleEnum(RoleEnum roleEnum) {
+		this.roleEnum = roleEnum;
+	}
 }
