@@ -41,7 +41,7 @@ public class UserController {
 	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
 		User user = authService.createUser(createUserRequest);
-		return new ResponseEntity<>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(user, user != null ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
 	}
 	
 }
